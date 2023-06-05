@@ -1,0 +1,30 @@
+POST http://localhost:8000/products
+Content-Type: application/json
+
+{
+  "name": "Ipad Pro m2",
+  "price": 1000
+}
+
+###
+
+GET http://localhost:8000/products/adedc6d2-b555-4391-a123-cb95d408f625
+
+###
+
+PUT http://localhost:8000/products/adedc6d2-b555-4391-a123-cb95d408f625
+Content-Type: application/json
+
+{
+  "name": "Ipad Pro m2 Updated2",
+  "price": 2000
+}
+
+###
+
+DELETE http://localhost:8000/products/54a79f0f-1e91-4460-a2de-57d6c269b52d
+
+###
+
+GET http://localhost:8000/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODYwMDIxODksInN1YiI6ImU2OTA5OGUwLTFiYTgtNDhlYS04OGY2LWYwY2ViYjBhZjVlOCJ9._mp2T4uTUG6P_DzqvWsRbP0CoGDMBiB7gZ_MLfSnnvg
