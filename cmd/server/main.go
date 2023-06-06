@@ -12,6 +12,9 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
+	httpSwagger "github.com/swaggo/http-swagger"
+	_ "github.com/yvesromeiro/goapifc/docs"
+
 	"log"
 	"net/http"
 )
@@ -51,6 +54,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	//r.Use(LogRequest)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.WithValue("jwt", configs.TokenAuth))
 	r.Use(middleware.WithValue("JwtExperesIn", configs.JwtExperesIn))
@@ -66,6 +70,8 @@ func main() {
 	})
 	r.Post("/users", userHandler.Create)
 	r.Post("/users/generate_token", userHandler.GetJWT)
+
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8000/docs/doc.json")))
 
 	http.ListenAndServe(":8000", r)
 }
